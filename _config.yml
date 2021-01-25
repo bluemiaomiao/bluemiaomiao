@@ -23,7 +23,7 @@ pretty_urls:
 
 # Directory
 source_dir: source
-public_dir: public
+public_dir: docs
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -106,7 +106,7 @@ deploy:
   type: ''
 
 search:
-  path: ./public/search.xml
+  path: ./docs/search.xml
   field: post
   format: html
   limit: 500
