@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>使用Hexo和NexT主题创建静态站点</title>
+      <link href="2021/01/25/create-hexo-static-website-with-next-theme/"/>
+      <url>2021/01/25/create-hexo-static-website-with-next-theme/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h1><h1 id="二、主题配置详解"><a href="#二、主题配置详解" class="headerlink" title="二、主题配置详解"></a>二、主题配置详解</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 静态建站 </tag>
+            
+            <tag> Hexo </tag>
+            
+            <tag> NexT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
