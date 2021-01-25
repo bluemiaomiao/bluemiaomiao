@@ -48,7 +48,7 @@ then
 	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Committing files.."
 	git commit -m "Update Site files"
 	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Pushing.."
-	#git push origin main
+	git push origin main
 else
 	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;41m[FAIL]\033[0m Input error."
 	exit 0
