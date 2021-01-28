@@ -9,7 +9,7 @@ type: about
 
 > 一些有意思的站点
 
-- [Debug客栈 | @孟宪辉 | 做一个爱分享的程序猿 | https://www.debuginn.cn](https://www.debuginn.cn/)
+- [Debug客栈 | @Meng小羽 | 做一个爱分享的程序猿 | https://www.debuginn.cn](https://www.debuginn.cn/)
 - [原站点 | @许少年 | 不积跬步无以至千里 | https://blog.51cto.com/xvjunjie](https://blog.51cto.com/xvjunjie)
 - [镜像站点 | @许少年 | 不积跬步无以至千里 | https://bluemiaomiao.gitee.io](https://bluemiaomiao.gitee.io)
 
