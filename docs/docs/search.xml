@@ -4,27 +4,58 @@
   
     
     <entry>
-      <title>使用Hexo和NexT主题创建静态站点</title>
-      <link href="2021/01/25/create-hexo-static-website-with-next-theme/"/>
-      <url>2021/01/25/create-hexo-static-website-with-next-theme/</url>
+      <title>supervistor操作指南</title>
+      <link href="2021/01/28/supervistor-ops-guide/"/>
+      <url>2021/01/28/supervistor-ops-guide/</url>
       
-        <content type="html"><![CDATA[<h1 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h1><h1 id="二、主题配置详解"><a href="#二、主题配置详解" class="headerlink" title="二、主题配置详解"></a>二、主题配置详解</h1>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
       
       <categories>
           
-          <category> Hexo </category>
+          <category> supervistor </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 静态建站 </tag>
+            <tag> 进程托管 </tag>
             
-            <tag> Hexo </tag>
+            <tag> 进程管理 </tag>
             
-            <tag> NexT </tag>
+            <tag> supervistor </tag>
+            
+            <tag> 操作指南 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>iptables操作指南</title>
+      <link href="2021/01/28/iptables-ops-guide/"/>
+      <url>2021/01/28/iptables-ops-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 防火墙 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> iptables </tag>
+            
+            <tag> 防火墙 </tag>
+            
+            <tag> 操作指南 </tag>
             
         </tags>
       
