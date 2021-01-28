@@ -120,10 +120,10 @@ darkmode: false
 # External url should start with http:// or https://
 menu:
   home: / || home
-  about: /about/ || user
-  tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
+  tags: /tags/ || tags
+  about: /about/ || user
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -207,6 +207,7 @@ links_settings:
 links:
   旧版入口(原51CTO站点): https://blog.51cto.com/xvjunjie
   国内镜像(Gitee托管): https://bluemiaomiao.gitee.io
+  Debug客栈(孟宪辉): https://www.debuginn.cn/
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).
@@ -268,7 +269,7 @@ reward_settings:
   # If true, reward will be displayed in every article by default.
   enable: true
   animation: false
-  #comment: 今晚能吃鸡腿吗？
+  comment: 今晚能吃鸡腿吗？
 
 reward:
   wechatpay: /images/wechatpay.png
@@ -999,4 +1000,3 @@ vendors:
 # Assets
 css: css
 js: js
-images: images

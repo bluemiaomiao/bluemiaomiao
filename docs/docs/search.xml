@@ -4,6 +4,472 @@
   
     
     <entry>
+      <title>解决libpng warning iccp known incorrect</title>
+      <link href="2021/01/28/libpng-warning-iccp-known-incorrect-bugs/"/>
+      <url>2021/01/28/libpng-warning-iccp-known-incorrect-bugs/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文章迁移自<a href="https://blog.51cto.com/xvjunjie/2348645">https://blog.51cto.com/xvjunjie/2348645</a>, 原站点不再更新。<a href="https://blog.51cto.com/xvjunjie/2563261">感谢有你, 一路相伴。</a></p></blockquote><h1 id="一、下载libpng源代码"><a href="#一、下载libpng源代码" class="headerlink" title="一、下载libpng源代码"></a>一、下载libpng源代码</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://sourceforge.net/projects/libpng/files/libpng16/1.6.36/libpng-1.6.36.tar.xz</span><br></pre></td></tr></table></figure><h1 id="二、修改png-c文件"><a href="#二、修改png-c文件" class="headerlink" title="二、修改png.c文件"></a>二、修改<code>png.c</code>文件</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (png_sRGB_checks[i].is_broken != <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">     <span class="comment">/* These profiles are known to have bad data that may cause</span></span><br><span class="line"><span class="comment">        * problems if they are used, therefore attempt to</span></span><br><span class="line"><span class="comment">        * discourage their use, skip the &#x27;have_md5&#x27; warning below,</span></span><br><span class="line"><span class="comment">        * which is made irrelevant by this error.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">     <span class="comment">// 注释掉下边这两行代码</span></span><br><span class="line">     <span class="comment">// png_chunk_report(png_ptr, &quot;known incorrect sRGB profile&quot;,</span></span><br><span class="line">     <span class="comment">//     PNG_CHUNK_ERROR);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="三、编译安装覆盖原来的可执行文件"><a href="#三、编译安装覆盖原来的可执行文件" class="headerlink" title="三、编译安装覆盖原来的可执行文件"></a>三、编译安装覆盖原来的可执行文件</h1><blockquote><p>以Ubuntu发行版为例, 其他发行版类似</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install zlib* -y</span><br><span class="line">sudo apt install gcc make cmake -y</span><br><span class="line">./configure &amp;&amp; make -j &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维错误集锦 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 错误集锦 </tag>
+            
+            <tag> libpng </tag>
+            
+            <tag> iccp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ElementUI在Vue中表格高度自适应</title>
+      <link href="2021/01/28/vue-elementui-auto-height-bugs/"/>
+      <url>2021/01/28/vue-elementui-auto-height-bugs/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文章迁移自<a href="https://blog.51cto.com/xvjunjie/2539764">https://blog.51cto.com/xvjunjie/2539764</a>, 原站点不再更新。<a href="https://blog.51cto.com/xvjunjie/2563261">感谢有你, 一路相伴。</a></p></blockquote><p>如果你在构建管理后台，菜单栏横向摆放到整个View的顶部，下方是搜索框一些组件，然后最下面是表格来呈现数据，那么，当缩放浏览器窗口的时候，需要实现表格组件Table的高度自适应。</p><p>你可以通过如下方法实现：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.customTableHeight = <span class="built_in">window</span>.innerHeight - <span class="built_in">this</span>.$refs.table.$el.offsetTop;</span><br><span class="line">&#125;, <span class="number">100</span>);</span><br></pre></td></tr></table></figure><p>然后将customTableHeight绑定到表格组件上：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:height=<span class="string">&quot;customTableHeight&quot;</span> ref=<span class="string">&quot;table&quot;</span></span><br></pre></td></tr></table></figure><p>当然不要忘记在data中声明该变量。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ElementUI </tag>
+            
+            <tag> Vue.js </tag>
+            
+            <tag> 自适应 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用Go基于WebSocket构建千万级视频直播弹幕系统</title>
+      <link href="2021/01/28/golang-hp-ws-system-dev-guide/"/>
+      <url>2021/01/28/golang-hp-ws-system-dev-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Golang </tag>
+            
+            <tag> WebSocket </tag>
+            
+            <tag> 弹幕 </tag>
+            
+            <tag> 视频直播 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>打造超级舒适的Go开发环境之VIM配置</title>
+      <link href="2021/01/28/golang-vim-workspace-config-guide/"/>
+      <url>2021/01/28/golang-vim-workspace-config-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Golang </tag>
+            
+            <tag> VIM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用Redis实现分布式锁</title>
+      <link href="2021/01/28/redis-distributed-lock-dev-guide/"/>
+      <url>2021/01/28/redis-distributed-lock-dev-guide/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文章迁移自<a href="https://blog.51cto.com/xvjunjie/2428610">https://blog.51cto.com/xvjunjie/2428610</a>, 原站点不再更新。<a href="https://blog.51cto.com/xvjunjie/2563261">感谢有你, 一路相伴。</a></p></blockquote><p>众所周知，分布式锁在微服务架构中是重头戏，尤其是在互联网公司，基本上企业内部都会有自己的一套分布式锁开发框架。本文主要介绍使用Redis如何构建高并发分布式锁。假设存在一个SpringBoot的控制器，其扣减库存的业务逻辑如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/deduct-stock&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">deductSotck</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将库存取出来</span></span><br><span class="line">    <span class="keyword">int</span> i = Interger.parseInt(stringRedisTemplate.opsForValue().get(<span class="string">&quot;stock&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断库存够不够减</span></span><br><span class="line">    <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 将库存回写到redis</span></span><br><span class="line">        <span class="keyword">int</span> tmp = stock - <span class="number">1</span>;</span><br><span class="line">        stringRedisTemplate.opsForValue().set(<span class="string">&quot;stock&quot;</span>, tmp.toString());</span><br><span class="line">        logger.info(<span class="string">&quot;库存扣减成功&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        logger.info(<span class="string">&quot;库存扣减失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;finished.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>不难看出，在应用服务器运行这段代码的时候就会有线程安全性问题。因为多个线程同时去修改Redis服务中的数据。因此考虑给这段代码加上一把锁：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/deduct-stock&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">deductSotck</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> i = Interger.parseInt(stringRedisTemplate.opsForValue().get(<span class="string">&quot;stock&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断库存够不够减</span></span><br><span class="line">        <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 将库存回写到redis</span></span><br><span class="line">            <span class="keyword">int</span> tmp = stock - <span class="number">1</span>;</span><br><span class="line">            stringRedisTemplate.opsForValue().set(<span class="string">&quot;stock&quot;</span>, tmp.toString());</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;finished.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样一来，当多个HTTP请求来请求数据的时候，多个线程去修改同一数据会有JVM本地锁来进行合理的资源限制。虽然这样解决了线程安全性问题，但是这仅仅是JVM级别的锁，在分布式的环境下，由于像这样的Web应用随时会进行动态扩容，因此当多个应用的时候，同样会有线程安全性问题，当上面这段代码遇到类似下面的架构时还是会有各种各样的问题：</p><img data-src="/2021/01/28/redis-distributed-lock-dev-guide/b0dcd68f-616c-11eb-8a29-f45c89a2bd63.png" class="" title="b0dcd68f-616c-11eb-8a29-f45c89a2bd63"><p>对于上述的情况，我们可以使用redis api提供的setnx方法解决：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/deduct-stock&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">deductSotck</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 尝试获取锁</span></span><br><span class="line">    Boolean flag = stringRedisTmplate.opsForValue().setIfAbsent(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;World&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否获得锁</span></span><br><span class="line">    <span class="keyword">if</span> (!flag) &#123; <span class="keyword">return</span> <span class="string">&quot;error&quot;</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = Interger.parseInt(stringRedisTemplate.opsForValue().get(<span class="string">&quot;stock&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断库存够不够减</span></span><br><span class="line">    <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 将库存回写到redis</span></span><br><span class="line">        <span class="keyword">int</span> tmp = stock - <span class="number">1</span>;</span><br><span class="line">        stringRedisTemplate.opsForValue().set(<span class="string">&quot;stock&quot;</span>, tmp.toString());</span><br><span class="line">        logger.info(<span class="string">&quot;库存扣减成功&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        logger.info(<span class="string">&quot;库存扣减失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除锁</span></span><br><span class="line">    stringRedisTemplate.delete(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;finished.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>setnx key value</code>是将key的值设置为value，当且仅当key不存在的时候。如果设置成功就返回1，否则就返回0。</p><p>这样的话，首先尝试获取锁，然后当业务执行完成的时候再删除锁。但是还是有问题的，当获取锁的时候抛出异常或者业务执行抛出异常怎么办，所以加入异常处理逻辑：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/deduct-stock&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">deductSotck</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 尝试获取锁</span></span><br><span class="line">        Boolean flag = stringRedisTmplate.opsForValue().setIfAbsent(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;World&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断是否获得锁</span></span><br><span class="line">        <span class="keyword">if</span> (!flag) &#123; <span class="keyword">return</span> <span class="string">&quot;error&quot;</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = Interger.parseInt(stringRedisTemplate.opsForValue().get(<span class="string">&quot;stock&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断库存够不够减</span></span><br><span class="line">        <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 将库存回写到redis</span></span><br><span class="line">            <span class="keyword">int</span> tmp = stock - <span class="number">1</span>;</span><br><span class="line">            stringRedisTemplate.opsForValue().set(<span class="string">&quot;stock&quot;</span>, tmp.toString());</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 删除锁</span></span><br><span class="line">        stringRedisTemplate.delete(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;finished.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>经过这样的修改，看起来没什么问题了。但是当程序获得锁并且开始执行业务逻辑的时候，突然程序挂掉了或者被一些粗暴的运维工程师给kill，在finally中删除锁的逻辑就会得不到执行，因此就会产生死锁。对于这种情况，我们可以给这个锁设置一个超时时间：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/deduct-stock&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">deductSotck</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 尝试获取锁</span></span><br><span class="line">        Boolean flag = stringRedisTmplate.opsForValue().setIfAbsent(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;World&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置超时时间, 根据业务场景估计超时时长</span></span><br><span class="line">        stringRedisTmplate.expire(<span class="string">&quot;Hello&quot;</span>, <span class="number">10</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断是否获得锁</span></span><br><span class="line">        <span class="keyword">if</span> (!flag) &#123; <span class="keyword">return</span> <span class="string">&quot;error&quot;</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = Interger.parseInt(stringRedisTemplate.opsForValue().get(<span class="string">&quot;stock&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断库存够不够减</span></span><br><span class="line">        <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 将库存回写到redis</span></span><br><span class="line">            <span class="keyword">int</span> tmp = stock - <span class="number">1</span>;</span><br><span class="line">            stringRedisTemplate.opsForValue().set(<span class="string">&quot;stock&quot;</span>, tmp.toString());</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 删除锁</span></span><br><span class="line">        stringRedisTemplate.delete(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;finished.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如果程序这么来写，相对来说安全一些了，但是还是存在问题。试想一下，当获取锁成功时，正想给这把锁设置超时的时候，程序挂掉了，还是会出现死锁的，因此在redis较高的版本中提供的setIfAbsent方法中可以同时设置锁的超时时间。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Boolean flag = stringRedisTmplate.opsForValue().setIfAbsent(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;World&quot;</span>, <span class="number">10</span>, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure><p>这样一来，尝试获取锁和设置锁的超时时间就具备原子性了。</p><p>实际上经过我们这一番改造，这在小型企业已经没有太大的问题， 因为像这种代码每天也就执行几百次，并不算做高并发的场景。当这样的代码被暴露在超高并发场景下的时候，还是会存在各种各样的问题。</p><p>试想一个场景，当一个HTTP请求请求到控制器的时候，应用获取到锁了，超时时间也设置成功了，但是应用的业务逻辑超过了超时时间，我们这里的超时时间设置的是10秒，当应用的业务逻辑执行15秒的时候，锁就被redis服务删除了。假设恰好此时又有一个HTTP请求来请求控制器，此时应用服务器会再启动一个线程来获取锁，而且还获取成功了，但是这次的HTTP请求对应的业务逻辑还没有执行完。新来的TTTP请求也在执行，由于新来的HTTP请求也在执行，因为锁超时后被删除，新的HTTP请求也成功获取锁了。当原来的HTTP请求对应的业务逻辑执行完成以后，尝试删除锁，这样正好删除的是新来的HTTP请求对应的锁。这个时候redis中又没有锁了，这样第三个HTTP请求又会获得锁，所以情况就不妙了。</p><p>为了解决上面的问题，我们可以将代码优化为下面的样子：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/deduct-stock&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">deductSotck</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    String clientUuid = UUID.randomUUID().toString();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 尝试获取锁,设置超时时间, 根据业务场景估计超时时长</span></span><br><span class="line">        Boolean flag = stringRedisTmplate.opsForValue().setIfAbsent(<span class="string">&quot;Hello&quot;</span>, clientUuid, <span class="number">10</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断是否获得锁</span></span><br><span class="line">        <span class="keyword">if</span> (!flag) &#123; <span class="keyword">return</span> <span class="string">&quot;error&quot;</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = Interger.parseInt(stringRedisTemplate.opsForValue().get(<span class="string">&quot;stock&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断库存够不够减</span></span><br><span class="line">        <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 将库存回写到redis</span></span><br><span class="line">            <span class="keyword">int</span> tmp = stock - <span class="number">1</span>;</span><br><span class="line">            stringRedisTemplate.opsForValue().set(<span class="string">&quot;stock&quot;</span>, tmp.toString());</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 删除锁的时候判断是不是自己的锁</span></span><br><span class="line">        <span class="keyword">if</span> (clientUuid.equals(stringRedisTemplate.opsForValue().get(<span class="string">&quot;Hello&quot;</span>))) &#123;</span><br><span class="line">            stringRedisTemplate.delete(<span class="string">&quot;Hello&quot;</span>);   </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;finished.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但是由于程序的不可预知性，谁也不能保证极端情况下，同时会有多个线程同时执行这段业务逻辑。我们可以在当执行业务逻辑的时候同时开一个定时器线程，每隔几秒就重新将这把锁设置为10秒，也就是给这把锁进行“续命”。这样就用担心业务逻辑到底执行多长时间了。但是这样程序的复杂性就会增加，每个业务逻辑都要写好多的代码，因此这里推荐在分布式环境下使用redisson。因此我们使用redisson实现分支线程的代码：</p><ul><li>引入依赖：</li></ul><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.redisson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>redisson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><ul><li>初始化Redisson的客户端配置：</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Redisson <span class="title">redisson</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    Config cfg = <span class="keyword">new</span> Config();</span><br><span class="line">    cfg.useSingleServer().setAddress(<span class="string">&quot;redis://localhost:6379&quot;</span>).setDatabase(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> (Redisson) Redisson.create(cfg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>在程序中注入Redisson客户端：</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> Redisson redisson;</span><br></pre></td></tr></table></figure><ul><li>对应的业务逻辑：</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/deduct-stock&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">deductSotck</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 获取锁对象</span></span><br><span class="line">    RLock lock = redisson.getLock(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 尝试加锁, 默认30秒, 自动后台开一个线程实现锁的续命</span></span><br><span class="line">        lock.tryLock();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = Interger.parseInt(stringRedisTemplate.opsForValue().get(<span class="string">&quot;stock&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断库存够不够减</span></span><br><span class="line">        <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 将库存回写到redis</span></span><br><span class="line">            <span class="keyword">int</span> tmp = stock - <span class="number">1</span>;</span><br><span class="line">            stringRedisTemplate.opsForValue().set(<span class="string">&quot;stock&quot;</span>, tmp.toString());</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            logger.info(<span class="string">&quot;库存扣减失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 释放锁</span></span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;finished.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Redisson分布式锁的实现原理如下：</p><img data-src="/2021/01/28/redis-distributed-lock-dev-guide/5f5af5de-6171-11eb-8093-f45c89a2bd63.png" class="" title="5f5af5de-6171-11eb-8093-f45c89a2bd63"><p>但是这个架构还是存在问题的，因为redis服务器是主从的架构，当在master节点设置锁之后，slave节点会立刻同步。但是如果刚在master节点设置上了锁，slave节点还没来得及设置，master节点就挂掉了。还是会产生上同样的问题，新的线程获得锁。</p><p><strong>因此使用redis构建高并发的分布式锁，仅适合单机架构，当使用主从架构的redis时还是会出现线程安全性问题。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+            <tag> 分布式锁 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>解决Java POI导出海量Excel数据内存溢出</title>
+      <link href="2021/01/28/java-poi-excel-more-data-bugs/"/>
+      <url>2021/01/28/java-poi-excel-more-data-bugs/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> POI </tag>
+            
+            <tag> Excel导出 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue中使用Axios处理后端请求的坑</title>
+      <link href="2021/01/28/vuejs-axios-springboot-bugs/"/>
+      <url>2021/01/28/vuejs-axios-springboot-bugs/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue.js </tag>
+            
+            <tag> Axios </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java高级架构之FastDFS分布式文件集群</title>
+      <link href="2021/01/28/java-fastdfs-ops-guide/"/>
+      <url>2021/01/28/java-fastdfs-ops-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 分布式存储 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> FastDFS </tag>
+            
+            <tag> Java </tag>
+            
+            <tag> 分布式存储 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SpringBoot集成FastDFS+Nginx整合基于Token的防盗链</title>
+      <link href="2021/01/28/springboot-fdfs-nginx-with-token/"/>
+      <url>2021/01/28/springboot-fdfs-nginx-with-token/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 分布式存储 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> FastDFS </tag>
+            
+            <tag> SpringBoot </tag>
+            
+            <tag> Nginx </tag>
+            
+            <tag> 防盗链 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分布式事务解决方案总结</title>
+      <link href="2021/01/28/distributed-tx-arch/"/>
+      <url>2021/01/28/distributed-tx-arch/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 分布式事务 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 分布式事务 </tag>
+            
+            <tag> TCC </tag>
+            
+            <tag> 柔性事务 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>FastDFS的HA架构多Group多Storage多Tracker结合SpringBoot</title>
+      <link href="2021/01/28/fastdfs-ha-arch-muti-group-muti-storage-muti-tracker-springboot/"/>
+      <url>2021/01/28/fastdfs-ha-arch-muti-group-muti-storage-muti-tracker-springboot/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 分布式存储 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> FastDFS </tag>
+            
+            <tag> HA架构 </tag>
+            
+            <tag> SpringBoot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>那些年我们一起玩的Django框架之全面讲解</title>
+      <link href="2021/01/28/django-framework-dev-guide/"/>
+      <url>2021/01/28/django-framework-dev-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Django </tag>
+            
+            <tag> Web框架 </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用Git与GitHub协同开发并搭建私有GitLab代码托管服务器</title>
+      <link href="2021/01/28/git-gitlab-gitflow/"/>
+      <url>2021/01/28/git-gitlab-gitflow/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> DevOps </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+            <tag> gitlab </tag>
+            
+            <tag> gitflow </tag>
+            
+            <tag> 协同开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>解决module markdown has no attribute version</title>
+      <link href="2021/01/28/module-markdown-has-no-attribute-version/"/>
+      <url>2021/01/28/module-markdown-has-no-attribute-version/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 错误集锦 </tag>
+            
+            <tag> markdown </tag>
+            
+            <tag> django </tag>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用Tornado开发Web应用</title>
+      <link href="2021/01/28/python-web-development-tornado/"/>
+      <url>2021/01/28/python-web-development-tornado/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web框架 </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> Tornado </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Django2.0集成xadmin0.60遇到的坑</title>
+      <link href="2021/01/28/django-2-0-and-xadmin-0-6-0-bugs/"/>
+      <url>2021/01/28/django-2-0-and-xadmin-0-6-0-bugs/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Django </tag>
+            
+            <tag> xadmin </tag>
+            
+            <tag> 错误集锦 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>supervistor操作指南</title>
       <link href="2021/01/28/supervistor-ops-guide/"/>
       <url>2021/01/28/supervistor-ops-guide/</url>
