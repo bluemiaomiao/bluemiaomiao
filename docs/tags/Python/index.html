@@ -22,7 +22,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="许少年的博客">
-<meta property="og:url" content="https://bluemiaomiao.github.io/tags/python/index.html">
+<meta property="og:url" content="https://bluemiaomiao.github.io/tags/Python/index.html">
 <meta property="og:site_name" content="许少年的博客">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="许少年">
@@ -34,7 +34,7 @@
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://bluemiaomiao.github.io/tags/python/">
+<link rel="canonical" href="https://bluemiaomiao.github.io/tags/Python/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>标签: python | 许少年的博客</title>
+  <title>标签: Python | 许少年的博客</title>
   
 
 
@@ -201,7 +201,7 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <h2 class="collection-header">python
+        <h2 class="collection-header">Python
           <small>标签</small>
         </h2>
       </div>
@@ -216,15 +216,35 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2021-01-28T19:30:57+08:00"
+              datetime="2021-01-28T19:31:55+08:00"
               content="2021-01-28">
           01-28
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2021/01/28/module-markdown-has-no-attribute-version/" itemprop="url">
-            <span itemprop="name">解决module markdown has no attribute version</span>
+          <a class="post-title-link" href="/2021/01/28/django-framework-dev-guide/" itemprop="url">
+            <span itemprop="name">那些年我们一起玩的Django框架之全面讲解</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-01-28T19:30:19+08:00"
+              content="2021-01-28">
+          01-28
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/01/28/python-web-development-tornado/" itemprop="url">
+            <span itemprop="name">使用Tornado开发Web应用</span>
           </a>
       </div>
 
@@ -304,20 +324,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-count">54</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -457,29 +477,6 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
     view     : 'FitH'
   };
   let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
-  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
-
-  if (NexT.utils.supportsPDFs()) {
-    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
-  } else {
-    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
-  }
-});
-</script>
-
-
-
-
-  
-
-  
-
-  
-
-
-</body>
-</html>
-dfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
   let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
 
   if (NexT.utils.supportsPDFs()) {

@@ -4,6 +4,124 @@
   
     
     <entry>
+      <title>QtCharts开发指南</title>
+      <link href="2021/02/01/qt-charts-in-action/"/>
+      <url>2021/02/01/qt-charts-in-action/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Qt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Qt </tag>
+            
+            <tag> Qt Charts </tag>
+            
+            <tag> C++ </tag>
+            
+            <tag> 图形编程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Kubernetes实战笔记</title>
+      <link href="2021/02/01/kubernetes-in-action/"/>
+      <url>2021/02/01/kubernetes-in-action/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Kubernetes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Kubernetes </tag>
+            
+            <tag> 容器云 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>OpenStack二次开发关键细节</title>
+      <link href="2021/02/01/openstack-how-to-dev/"/>
+      <url>2021/02/01/openstack-how-to-dev/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> OpenStack </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> OpenStack </tag>
+            
+            <tag> 私有云 </tag>
+            
+            <tag> SDN </tag>
+            
+            <tag> 二次开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>OpenStack实战笔记</title>
+      <link href="2021/02/01/openstack-in-action/"/>
+      <url>2021/02/01/openstack-in-action/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> OpenStack </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> OpenStack </tag>
+            
+            <tag> 私有云 </tag>
+            
+            <tag> SDN </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>解决libpng warning iccp known incorrect</title>
       <link href="2021/01/28/libpng-warning-iccp-known-incorrect-bugs/"/>
       <url>2021/01/28/libpng-warning-iccp-known-incorrect-bugs/</url>
