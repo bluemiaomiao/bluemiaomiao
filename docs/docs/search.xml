@@ -4,6 +4,93 @@
   
     
     <entry>
+      <title>JavaFX开发指南</title>
+      <link href="2021/02/03/javafx-dev-guide/"/>
+      <url>2021/02/03/javafx-dev-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 桌面开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaFX </tag>
+            
+            <tag> GUI </tag>
+            
+            <tag> 桌面开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在Linux上部署VNC和XRDP远程桌面服务</title>
+      <link href="2021/02/02/install-vnc-xrdp-in-linux/"/>
+      <url>2021/02/02/install-vnc-xrdp-in-linux/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、VNC与XRDP"><a href="#一、VNC与XRDP" class="headerlink" title="一、VNC与XRDP"></a>一、VNC与XRDP</h1><blockquote><p>为什么推荐你是用XRDP而不是VNC ?</p></blockquote><h1 id="二、在Linux上安装"><a href="#二、在Linux上安装" class="headerlink" title="二、在Linux上安装"></a>二、在Linux上安装</h1><p>在安装VNC和XRDP之前, 需要进行一些前置工作, 包括SELinux、Firewalld、SSHD。首先关闭SELinux, 修改<code>/etc/selinux/config</code>文件:</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">target</span>=disabled</span><br></pre></td></tr></table></figure><p>然后禁用Firewalld:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop firewalld &amp;&amp; systemctl <span class="built_in">disable</span> firewalld</span><br></pre></td></tr></table></figure><p>确保SSHD支持用户名密码登录, 需要修改<code>/etc/ssh/sshd_config</code></p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Port 22</span><br><span class="line">Protocol 2</span><br><span class="line">PermitRootLogin yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br><span class="line">PasswordAuthentication yes</span><br><span class="line">PermitEmptyPasswords no</span><br><span class="line">ChallengeResponseAuthentication no</span><br><span class="line">UsePAM no</span><br><span class="line">UseDNS no</span><br></pre></td></tr></table></figure><p>Ubuntu直接安装VNC和XRDP即可, CentOS用户需要启用epel源:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel* -y</span><br><span class="line">sudo yum clean all</span><br><span class="line">sudo yum makecache</span><br></pre></td></tr></table></figure><p>Ubuntu使用如下命令安装: </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install xrdp gnome xface4 vnc4server -y</span><br></pre></td></tr></table></figure><p>CentOS使用如下命令安装:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum --enablerepo=epel -y install xrdp</span><br><span class="line">sudo yum install tigervnc tigervnc-server -y</span><br><span class="line">sudo yum -y groups install <span class="string">&quot;GNOME Desktop&quot;</span></span><br></pre></td></tr></table></figure><p>进行完前置处理和VNC和XRDP以及Gnome桌面环境的部署工作, 需要设置默认的运行级别, 并重启服务器: </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl set-default graphical.target</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure><p>接下来开始进行配置VNC服务:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service</span><br></pre></td></tr></table></figure><p>修改配置服务单元配置文件: </p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Remote desktop service (VNC)</span><br><span class="line"><span class="attr">After</span>=syslog.target network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">User</span>=root</span><br><span class="line"><span class="attr">ExecStartPre</span>=/bin/sh -c <span class="string">&#x27;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&#x27;</span></span><br><span class="line"><span class="attr">ExecStart</span>=/usr/bin/vncserver_wrapper root %i</span><br><span class="line"><span class="attr">ExecStop</span>=/bin/sh -c <span class="string">&#x27;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure><p>主要添加<code>User</code>为<code>root</code>用户, 然后修改<code>ExecStart</code>的<code>&lt;user&gt;</code>为<code>root</code>, 然后启动VNC服务并设置为开机自启动: </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vncpasswd</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start vncserver@:1.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> vncserver@:1.service</span><br></pre></td></tr></table></figure><p>XRDP基于VNC，此时我们再配置XRDP服务, 主要修改<code>/etc/xrdp/xrdp.ini</code>:</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Globals]</span></span><br><span class="line"><span class="attr">max_bpp</span>=<span class="number">24</span></span><br></pre></td></tr></table></figure><p>如果不进行修改可能会出现如下错误: </p><img data-src="/2021/02/02/install-vnc-xrdp-in-linux/f1eb5bba-65e4-11eb-a48c-f45c89a2bd63.png" class="" title="f1eb5bba-65e4-11eb-a48c-f45c89a2bd63"><p>如果通过Google或者GitHub搜索该问题, 大部分都是说的是密码错误, 但是并不是这个原因导致的。接下来设置XRDP服务为开启状态: </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> xrdp</span><br><span class="line">sudo systemctl start xrdp</span><br></pre></td></tr></table></figure><p>在使用XRDP的时候可能出现键盘混乱问题, 你可以通过如下命令解决, 值得注意的时候需要使用<code>bash</code>执行: </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash</span><br><span class="line">gconftool-2 –<span class="built_in">type</span> list –list-type=string –<span class="built_in">set</span> /desktop/gnome/peripherals/keyboard/kbd/layouts [damnlayouts]</span><br></pre></td></tr></table></figure><p>然后退出登录桌面重新登录即可。</p><h1 id="三、在Windows上安装"><a href="#三、在Windows上安装" class="headerlink" title="三、在Windows上安装"></a>三、在Windows上安装</h1><p>对于VNC的连接方式，Windows可以使用<strong>VNC Viewer</strong>。</p><p>对于XRDP的连接方式，Windows可以使用原生的<strong>远程桌面连接</strong>。</p><h1 id="四、在macOS上安装"><a href="#四、在macOS上安装" class="headerlink" title="四、在macOS上安装"></a>四、在macOS上安装</h1><p>对于VNC的连接方式，macOS可以使用远程的<strong>远程桌面</strong>, 使用Command+Space组合键打开全局搜索进行查找。</p><p>对于XRDP的连接方式, macOS可以使用<strong>Microsoft Remote Desktop for Mac</strong>, 这款应用在AppStore可以搜索到, 但是仅限非大陆用户。</p><blockquote><p>百度网盘分享链接: <a href="https://pan.baidu.com/s/1PFB9zRDd-jYEvwV3s4xT_g">https://pan.baidu.com/s/1PFB9zRDd-jYEvwV3s4xT_g</a>  密码: 3245</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 云桌面 </tag>
+            
+            <tag> VNC </tag>
+            
+            <tag> XRDP </tag>
+            
+            <tag> 远程桌面 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>KVM实战笔记</title>
+      <link href="2021/02/02/kvm-in-action/"/>
+      <url>2021/02/02/kvm-in-action/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 虚拟化 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> KVM </tag>
+            
+            <tag> 虚拟化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>QtCharts开发指南</title>
       <link href="2021/02/01/qt-charts-in-action/"/>
       <url>2021/02/01/qt-charts-in-action/</url>
