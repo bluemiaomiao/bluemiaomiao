@@ -163,6 +163,42 @@ Stage s = new Stage();
 
 # 四、Platform工具类
 
+`Platform`是平台工具类, 提供了如下方法:
+
+- `Platform.setImplicitExit(boolean b)`: 设置是否隐式退出,  用户点击按钮后关闭界面, 但是后台保持运行, `Platform.setImplicitExit()`用于获取
+- `Platform.accessibilityActiveProperty()`: 是否开启辅助功能, `Platform.isAccessibilityActive()`获取设定的值
+- `Platform.exit()`: 退出JavaFX应用, 包括Java虚拟机
+- `Platform.isFxApplicationThread()`: 是否为JavaFX的UI线程
+- `Platform.isSupported(ConditionalFeature feature)`: 检测是否支持特定功能
+- `Platform.runLater(Runnable runnable)`: 在一个随机的未来时间运行某个任务, 不要执行某些类似于下载等重型任务
+
+# 五、Screen工具类
+
+`Screen`是屏幕类, JavaFX将屏幕分为全部区域和可视区域, 并且分别通过`getBounds`和`getVisualBounds`返回`Rectangle2D`对象或者通过`getDpi()`获取DPI。在获取屏幕区域的时候, 应该先获取到所有的屏幕集合, 因为可能存在不止一块屏幕:
+
+- `Screen.getPrimary()`: 获取主屏幕
+- `Screen.getScreens()`: 获取屏幕集合
+- `Screen.getScreensForRectangle(double x, double y, double width, double height)`: 自定义一个矩形区域, 返回在这个区域内的屏幕, 相当于过滤掉比该区域大的屏幕
+- `Screen.getScreensForRectangle(Rectangle2D 2d)`: 同上
+
+获取到`Screen`对象之后就可以通过如下方法获取屏幕信息:
+
+- `getBounds()`: 获取屏幕全部区域
+- `getVisualBounds()`: 获取除去顶部栏或者任务栏的可视区域
+- `getDpi()`: 获取屏幕DPI
+
+获取到矩形区域后, 就可以进一步得到图形信息:
+
+- `getMaxX()`、`getMinX()`
+- `getMaxY()`、`getMinY()`
+- `getWidth()`、`getHeight()`
+
+# 六、Scene类
+
+
+
+
+
 
 
 
