@@ -5,6 +5,7 @@ date: 2021-01-28 19:36:21
 category: Redis
 description: '本文摘要: 众所周知，分布式锁在微服务架构中是重头戏，尤其是在互联网公司，基本上企业内部都会有自己的一套分布式锁开发框架。本文主要介绍使用Redis如何构建高并发分布式锁。'
 top: true
+filename: redis-distributed-lock-dev-guide.md
 ---
 
 > 本文章迁移自[https://blog.51cto.com/xvjunjie/2428610](https://blog.51cto.com/xvjunjie/2428610), 原站点不再更新。[感谢有你, 一路相伴。](https://blog.51cto.com/xvjunjie/2563261)

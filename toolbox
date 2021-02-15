@@ -1,0 +1,113 @@
+#!/bin/sh
+
+# 没有任何子命令输入就显示帮助信息
+if [[ $# == 0 ]]
+then
+    echo 'Please enter the subcommand:'
+    echo 'sync\tPublish local posts to github pages.'
+    echo 'posts\tList all posts.'
+    echo 'serve\tStart the local hexo server to preview the site.'
+    echo 'build\tOnly static files are generated, but not uploaded to GitHub pages.'
+	echo 'help\tDisplay help information.'
+	exit 0
+fi
+
+if [[ $1 == 'sync' ]]
+then
+	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Starting auto publish process.."
+
+	# 检测Git是否安装
+	git_version=`git --version | awk '{print $3}'`
+
+	if [[ $git_version == "" ]]
+	then
+		echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;41m[FAIL]\033[0m Cannot find git command."
+		exit 0
+	fi
+
+	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Checking git version.. \033[32m$git_version\033[0m"
+
+	# 检测Hexo是否安装
+	hexo_cli_version=`hexo version | grep hexo-cli | awk '{print $2}'`
+
+	if [[ $hexo_cli_version == "" ]]
+	then
+		echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;41m[FAIL]\033[0m Cannot find hexo command."
+		exit 0
+	fi
+
+	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Checking hexo-cli version.. \033[32m$hexo_cli_version\033[0m"
+
+	# 设置仓库信息
+	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Change local repo user info.."
+	git config --local user.name "bluemiaomiao"
+	git config --local user.email "xv2017@outlook.com"
+
+	# 生成静态文件
+	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Generate static files.."
+	hexo g
+
+	# 推送文件
+
+	git add .
+	git status
+
+	read -p "Begin? [Y/n]" begin_var
+
+	if [[ $begin_var == 'n' ]] || [[ $begin_var == 'N' ]]
+	then
+		echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Bye!"
+		exit 0
+	elif [[ $begin_var == 'y' ]] || [[ $begin_var == 'Y' ]] || [[ $begin_var == '' ]]
+	then
+		echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Committing files.."
+		git commit -m "Update Site files"
+		echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Pushing.."
+		git push origin main
+	else
+		echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;41m[FAIL]\033[0m Input error."
+		exit 0
+	fi
+elif [[ $1 == 'posts' ]]
+then
+    python3 posts.py
+elif [[ $1 == 'serve' ]]
+then
+	# 检测Hexo是否安装
+	hexo_cli_version=`hexo version | grep hexo-cli | awk '{print $2}'`
+
+	if [[ $hexo_cli_version == "" ]]
+	then
+		echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;41m[FAIL]\033[0m Cannot find hexo command."
+		exit 0
+	fi
+
+	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Checking hexo-cli version.. \033[32m$hexo_cli_version\033[0m"
+
+	hexo s
+elif [[ $1 == 'build' ]]
+then
+# 检测Hexo是否安装
+	hexo_cli_version=`hexo version | grep hexo-cli | awk '{print $2}'`
+
+	if [[ $hexo_cli_version == "" ]]
+	then
+		echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;41m[FAIL]\033[0m Cannot find hexo command."
+		exit 0
+	fi
+
+	echo "`date '+%Y-%m-%d %H:%M:%S'` \033[37;44m[INFO]\033[0m Checking hexo-cli version.. \033[32m$hexo_cli_version\033[0m"
+
+	hexo g
+elif [[ $1 == 'help' ]]
+then
+	echo 'Please enter the subcommand:'
+    echo 'sync\tPublish local posts to github pages.'
+    echo 'posts\tList all posts.'
+    echo 'serve\tStart the local hexo server to preview the site.'
+    echo 'build\tOnly static files are generated, but not uploaded to GitHub pages.'
+	echo 'help\tDisplay help information.'
+else
+	echo 'Error subcommand.'
+fi
+

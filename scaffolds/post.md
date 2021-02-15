@@ -1,5 +1,6 @@
 ---
 title: {{ title }}
+filename: {{ title }}.md
 date: {{ date }}
 tags: []
 category: 未分类的

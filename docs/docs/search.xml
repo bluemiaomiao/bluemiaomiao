@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title>iris-dev-guide</title>
+      <link href="2021/02/15/iris-dev-guide/"/>
+      <url>2021/02/15/iris-dev-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 未分类的 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Go语言核心知识</title>
+      <link href="2021/02/15/golang-core-knowledge/"/>
+      <url>2021/02/15/golang-core-knowledge/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><blockquote><p>本章节主要讲述Golang的安装和一些基础知识</p></blockquote><h1 id="二、数据类型与container包"><a href="#二、数据类型与container包" class="headerlink" title="二、数据类型与container包"></a>二、数据类型与container包</h1><blockquote><p>本章节主要讲述Golang支持的数据类型(包括数组/切片/Map..)和container包下的高级数据结构</p></blockquote><h1 id="三、逻辑支持"><a href="#三、逻辑支持" class="headerlink" title="三、逻辑支持"></a>三、逻辑支持</h1><blockquote><p>本章节主要讲述if/for/switch等结构</p></blockquote><h1 id="四、函数-方法-结构体-接口-指针"><a href="#四、函数-方法-结构体-接口-指针" class="headerlink" title="四、函数/方法/结构体/接口/指针"></a>四、函数/方法/结构体/接口/指针</h1><blockquote><p>本章节主要讲述了Golang面向接口编程与面向对象编程概念的实现</p></blockquote><h1 id="五、错误处理"><a href="#五、错误处理" class="headerlink" title="五、错误处理"></a>五、错误处理</h1><blockquote><p>本章节主要讲述异常捕获与处理</p></blockquote><h1 id="六、Goroutine"><a href="#六、Goroutine" class="headerlink" title="六、Goroutine"></a>六、Goroutine</h1><blockquote><p>本章节主要讲述Golang中用户级线程的基本使用和实现原理, 还有GMP模型与Go调度器原理</p></blockquote><h1 id="七、测试"><a href="#七、测试" class="headerlink" title="七、测试"></a>七、测试</h1><blockquote><p>本章节主要包含基本测试、功能测试与性能测试的内容, 主要设计testing包</p></blockquote><h1 id="八、sync包与context包"><a href="#八、sync包与context包" class="headerlink" title="八、sync包与context包"></a>八、sync包与context包</h1><blockquote><p>本章节主要讲述Golang针对较旧并发编程模型的支持和Goroutine之间的通信问题</p></blockquote><h1 id="九、bytes包与字符串"><a href="#九、bytes包与字符串" class="headerlink" title="九、bytes包与字符串"></a>九、bytes包与字符串</h1><blockquote><p>本章节主要讲述字符处理相关的知识</p></blockquote><h1 id="十、io包与bufio包"><a href="#十、io包与bufio包" class="headerlink" title="十、io包与bufio包"></a>十、io包与bufio包</h1><blockquote><p>本章节主要讲述与I/O相关的内容</p></blockquote><h1 id="十一、os包"><a href="#十一、os包" class="headerlink" title="十一、os包"></a>十一、os包</h1><blockquote><p>本章节主要讲述Golang与操作系统相关的内容</p></blockquote><h1 id="十二、net包"><a href="#十二、net包" class="headerlink" title="十二、net包"></a>十二、net包</h1><blockquote><p>本章节主要讲述和网络相关的Golang知识, 需要有一定网络知识作为前置条件</p></blockquote><h1 id="十三、程序性能分析"><a href="#十三、程序性能分析" class="headerlink" title="十三、程序性能分析"></a>十三、程序性能分析</h1><blockquote><p>本章节主要讲述Golang程序性能分析基础知识和常用工具</p></blockquote><h1 id="十四、reflect包"><a href="#十四、reflect包" class="headerlink" title="十四、reflect包"></a>十四、reflect包</h1><blockquote><p>本章节主要讲述Golang针对反射的支持</p></blockquote><h1 id="十五、syscall包"><a href="#十五、syscall包" class="headerlink" title="十五、syscall包"></a>十五、syscall包</h1><blockquote><p>本章节主要讲述syscall包的相关知识, 使你更加清楚Golang的底层细节</p></blockquote><h1 id="十六、go包"><a href="#十六、go包" class="headerlink" title="十六、go包"></a>十六、go包</h1><blockquote><p>本章节主要讲述与编译原理相关的知识</p></blockquote><h1 id="十七、垃圾回收"><a href="#十七、垃圾回收" class="headerlink" title="十七、垃圾回收"></a>十七、垃圾回收</h1><blockquote><p>本章节主要讲述Golang的三色标记法垃圾回收机制和历代Golang版本的垃圾回收演进路线</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Golang </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JavaFX开发指南</title>
       <link href="2021/02/03/javafx-dev-guide/"/>
       <url>2021/02/03/javafx-dev-guide/</url>

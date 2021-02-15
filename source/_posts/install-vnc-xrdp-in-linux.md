@@ -1,5 +1,6 @@
 ---
 title: 在Linux上部署VNC和XRDP远程桌面服务
+filename: install-vnc-xrdp-in-linux.md
 tags: ['云桌面', 'VNC', 'XRDP', '远程桌面']
 category: Linux
 description: '本文摘要: 本文将带你在CentOS或者Ubuntu服务器安装Gnome环境并部署VNC和XRDP服务，实现在Windows和macOS上访问远程桌面'

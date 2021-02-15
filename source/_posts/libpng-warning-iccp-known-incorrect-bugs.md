@@ -5,6 +5,7 @@ date: 2021-01-28 19:38:33
 category: 运维错误集锦
 description: '本文摘要: 解决libpng库产生的warning警告信息'
 top: false
+filename: libpng-warning-iccp-known-incorrect-bugs.md
 ---
 
 > 本文章迁移自[https://blog.51cto.com/xvjunjie/2348645](https://blog.51cto.com/xvjunjie/2348645), 原站点不再更新。[感谢有你, 一路相伴。](https://blog.51cto.com/xvjunjie/2563261)
