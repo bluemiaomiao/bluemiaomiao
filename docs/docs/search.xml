@@ -4,7 +4,98 @@
   
     
     <entry>
-      <title>iris-dev-guide</title>
+      <title>macOS与iOS内核原理</title>
+      <link href="2021/02/21/macos-kernel-dev-guide/"/>
+      <url>2021/02/21/macos-kernel-dev-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> macOS开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> macOS开发 </tag>
+            
+            <tag> Objective-C </tag>
+            
+            <tag> iOS开发 </tag>
+            
+            <tag> Swift </tag>
+            
+            <tag> 内核开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>学习Swift</title>
+      <link href="2021/02/21/swift-in-action/"/>
+      <url>2021/02/21/swift-in-action/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> macOS开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> macOS开发 </tag>
+            
+            <tag> iOS开发 </tag>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>学习Objective-C</title>
+      <link href="2021/02/21/objective-c-in-action/"/>
+      <url>2021/02/21/objective-c-in-action/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> macOS开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> macOS开发 </tag>
+            
+            <tag> Objective-C </tag>
+            
+            <tag> iOS开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Go Iris开发指南</title>
       <link href="2021/02/15/iris-dev-guide/"/>
       <url>2021/02/15/iris-dev-guide/</url>
       
@@ -13,10 +104,18 @@
       
       <categories>
           
-          <category> 未分类的 </category>
+          <category> Golang </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Golang </tag>
+            
+            <tag> Go Web编程 </tag>
+            
+        </tags>
       
     </entry>
     
