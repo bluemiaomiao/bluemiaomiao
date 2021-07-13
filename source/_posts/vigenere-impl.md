@@ -2,7 +2,7 @@
 title: 密码学之维吉尼亚加解密Java实现
 filename: vigenere-impl.md
 tags: ['密码学', '逆向破解']
-category: '一些算法'
+category: '算法'
 description: '本文摘要: 维吉尼亚密码（又译维热纳尔密码）是使用一系列凯撒密码组成密码字母表的加密算法，属于多表密码的一种简单形式。'
 top: false
 date: 2021-03-24 15:22:21
