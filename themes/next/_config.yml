@@ -50,7 +50,7 @@ favicon:
   #ms_browserconfig: /images/browserconfig.xml
 
 # Show multilingual switcher in footer.
-language_switcher: true
+language_switcher: false
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
@@ -70,7 +70,7 @@ footer:
   copyright: '许少年的博客 - 不积跬步无以至千里'
 
   # Powered by Hexo & NexT
-  powered: true
+  powered: false
 
   # Beian ICP and gongan information for Chinese users. See: http://www.beian.miit.gov.cn, http://www.beian.gov.cn
   beian:
@@ -101,8 +101,8 @@ creative_commons:
 
 # Schemes
 #scheme: Muse
-#scheme: Mist
-scheme: Pisces
+scheme: Mist
+#scheme: Pisces
 #scheme: Gemini
 
 # Dark Mode
@@ -185,7 +185,7 @@ social:
   E-Mail: mailto:xv2017@outlook.com || envelope
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
-  #Twitter: https://twitter.com/yourname || twitter
+  Twitter: https://twitter.com/Caesar_2021 || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
   StackOverflow: https://stackoverflow.com/story/bluemiaomiao || stack-overflow
   #YouTube: https://youtube.com/yourname || youtube
@@ -205,7 +205,6 @@ links_settings:
   layout: block
 
 links:
-  旧版入口(原51CTO站点): https://blog.51cto.com/xvjunjie
   国内镜像(Gitee托管): https://bluemiaomiao.gitee.io
   Debug客栈(Meng小羽): https://www.debuginn.cn/
 
@@ -269,7 +268,7 @@ reward_settings:
   # If true, reward will be displayed in every article by default.
   enable: true
   animation: false
-  comment: 今晚能吃鸡腿吗？
+  comment: 你的赞赏是我进步的最大动力
 
 reward:
   wechatpay: /images/wechatpay.png
@@ -360,7 +359,7 @@ codeblock:
   # Code Highlight theme
   # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic
   # See: https://github.com/chriskempson/tomorrow-theme
-  highlight_theme: night
+  highlight_theme: normal
   # Add copy button on codeblock
   copy_button:
     enable: false
